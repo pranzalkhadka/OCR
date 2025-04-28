@@ -2,4 +2,5 @@ mistralai
 pdfkit
 markdown
 weasyprint
+google-generativeai
 #wkhtmltopdf

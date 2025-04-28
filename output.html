@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Limitations and Constraints</title>
+    <style>
+        /* Basic page setup */
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 20px 40px; /* Margins as specified */
+            line-height: 1.5; /* Improves readability */
+            color: #000000; /* Text color */
+            background-color: #FFFFFF; /* Background color */
+        }
+
+        /* Headings */
+        h1, h3 {
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+        }
+        h1 {
+            font-size: 14pt; /* Heading 1 size */
+        }
+        h3 {
+            font-size: 14pt; /* Heading 3 size */
+        }
+
+        /* Paragraphs and bullet points */
+        p, li {
+            font-family: 'Times New Roman', serif;
+            font-size: 12pt; /* Paragraph and list item size */
+            margin-bottom: 10px; /* Paragraph spacing */
+        }
+        ul {
+            list-style-type: disc; /* Bullet style */
+            margin-left: 20px; /* Indentation for bullet points */
+            padding-left: 5px; /* Bullet spacing*/
+        }
+        ul li::before {
+          content: "\2022"; /* Unicode bullet */
+          display: inline-block;
+          width: 1em;
+          margin-left: -1em;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-family: 'Times New Roman', serif; /* Table font */
+        }
+        th, td {
+            border: 1px solid black; /* Table border */
+            padding: 5px; /* Cell padding */
+            font-size: 10pt; /* Table cell size */
+        }
+        th {
+            font-weight: bold; /* Table header weight */
+        }
+
+        /*Responsiveness - basic approach, more sophisticated methods could be used*/
+        @media (max-width: 768px){
+            body {
+                margin: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>3.3 Model Limitations and Constraints</h1>
+    <p>The documentation explicitly acknowledges several limitations of the model, which is a strength of the documentation. Key limitations include:</p>
+
+    <h3>3.3.1 Data Limitations</h3>
+    <ul>
+        <li>Sample Size: The 300-loan sample is insufficient for a robust credit risk model, particularly given the complexity of the gradient boosting algorithm.</li>
+        <li>Approved Loans Only: The model is trained only on approved loans, creating a selection bias that may limit its applicability to the broader applicant population.</li>
+        <li>Binary Outcome: The simplification to a binary outcome (Default/Fully Paid) does not capture the nuances of loan performance, such as early payoffs or late payments.</li>
+        <li>Temporal Information: The lack of temporal data prevents proper time-based validation, which is critical for credit risk models.</li>
+    </ul>
+
+    <h3>3.3.2 Model Limitations</h3>
+    <ul>
+        <li>Binary Classification: The documentation acknowledges that binary classification simplifies the complex nature of credit risk assessment.</li>
+        <li>Interpretability: Gradient boosting models have limited interpretability compared to simpler models like logistic regression.</li>
+        <li>Validation Approach: The random split validation approach, rather than crossvalidation or temporal validation, is acknowledged as suboptimal.</li>
+        <li>Feature Interactions: Limited exploration of feature interactions is noted as a constraint.</li>
+    </ul>
+
+    <h3>Table 3.2: Summary of Model Performance Boundaries</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Optimal Range</th>
+                <th>Extrapolation Risk</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>FICO Score</td>
+                <td>$580-850</td>
+                <td>High risk below 580</td>
+            </tr>
+            <tr>
+                <td>DTI</td>
+                <td>0-150%</td>
+                <td>High risk above 150%</td>
+            </tr>
+            <tr>
+                <td>Annual Income</td>
+                <td>$20,000-$300,000</td>
+                <td>Moderate risk outside range</td>
+            </tr>
+            <tr>
+                <td>Loan Amount</td>
+                <td>$1,000-$40,000</td>
+                <td>High risk above $40,000</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
