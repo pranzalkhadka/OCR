@@ -2,7 +2,8 @@ import base64
 import os
 from mistralai import Mistral
 
-API_KEY = os.getenv("MISTRAL_API_KEY")
+# API_KEY = os.getenv("MISTRAL_API_KEY")
+API_KEY = "BosudCIA42Asdkp17qpYofjiGv6D1HHC"
 
 client = Mistral(api_key=API_KEY)
 
@@ -49,8 +50,8 @@ def extract_content(ocr_response):
         for img in page.images:
             images.append({
                 "id": img.id,
-                "base64": img.image_base64,
-                "alt": img.alt or f"Image {img.id}"
+                "base64": img.image_base64
+                # "alt": img.alt or f"Image {img.id}"
             })
         
         structure_metadata.append({
@@ -68,7 +69,7 @@ def main(pdf_path):
     return markdown_content, images, structure_metadata
 
 if __name__ == "__main__":
-    pdf_path = "/home/pranjal/Downloads/OCR/test.pdf" 
+    pdf_path = "/home/pranjal/Downloads/OCR/test_4.pdf" 
     markdown_content, images, structure_metadata = main(pdf_path)
     if markdown_content:
         print("Markdown Content:", markdown_content)
